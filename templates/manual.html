@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual COVID-19 Risk Assessment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .btn-toggle {
+            margin: 2px;
+        }
+
+        .btn-yes {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-no {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .toggle-btn-group .btn {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Manual COVID-19 Risk Assessment</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" name="AGE" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select class="form-control" id="sex" name="SEX">
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pregnant">Pregnant (Females):</label>
+                <input type="number" class="form-control" id="pregnant" name="PREGNANT" placeholder="1 for Yes, 0 for No">
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Condition</th>
+                        <th>Yes</th>
+                        <th>No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set conditions = ['INTUBED', 'PNEUMONIA', 'DIABETES', 'COPD', 'ASTHMA', 'INMSUPR', 
+                                         'HIPERTENSION', 'OTHER_DISEASE', 'CARDIOVASCULAR', 'OBESITY', 
+                                         'RENAL_CHRONIC', 'TOBACCO', 'ICU'] %}
+                    {% for condition in conditions %}
+                    <tr>
+                        <td>{{ condition }}</td>
+                        <td>
+                            <div class="btn-group btn-toggle" data-toggle="buttons">
+                                <label class="btn btn-yes">
+                                    <input type="radio" name="{{ condition }}" value="1" autocomplete="off"> Yes
+                                </label>
+                                <label class="btn btn-no">
+                                    <input type="radio" name="{{ condition }}" value="0" autocomplete="off" checked> No
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <label for="algorithm">Select Algorithm:</label>
+                <select class="form-control" id="algorithm" name="algorithm">
+                    <option value="Random Forest">Random Forest</option>
+                    <option value="Gradient Boosting">Gradient Boosting</option>
+                    <option value="LightGBM">LightGBM</option>
+                    <option value="Decision Tree">Decision Tree</option>
+                    <option value="Logistic Regression">Logistic Regression</option>
+                    <option value="XGBoost">XGBoost</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

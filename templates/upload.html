@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV File</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload CSV File for COVID-19 Risk Assessment</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="file">Choose CSV file:</label>
+            <input type="file" name="file" required>
+
+            <label for="algorithm">Select Algorithm:</label>
+            <select id="algorithm" name="algorithm" required>
+                <option value="Random Forest">Random Forest</option>
+                <option value="Gradient Boosting">Gradient Boosting</option>
+                <option value="LightGBM">LightGBM</option>
+                <option value="Decision Tree">Decision Tree</option>
+                <option value="Logistic Regression">Logistic Regression</option>
+            </select>
+
+            <button type="submit" class="button">Submit</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="button">Back to Home</a>
+    </div>
+</body>
+</html>
