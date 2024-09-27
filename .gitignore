@@ -1,42 +1,9 @@
-# Byte-compiled files
+# Ignore virtual environment
+venv/
+
+# Ignore any other temporary or system files
+*.log
 __pycache__/
 *.py[cod]
-
-# Virtual environment
-venv/
-ENV/
-env/
-*.egg-info/
-
-# Model files
-*.pkl
-*.txt
-
-# Local environment variables
-.env
-
-# Logs
-*.log
-
-# HTML files that might be generated and should not be tracked
-result.html
-manual_result.html
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
-
-# VS Code settings
-.vscode/
-
-# Temporary files
-*~
-*.tmp
-*.temp
-
-# System files
 .DS_Store
 Thumbs.db
-
-# Ignore all site-packages
-venv/Lib/site-packages/
-

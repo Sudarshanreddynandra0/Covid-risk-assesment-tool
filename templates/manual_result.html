@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Manual Entry COVID-19 Risk Assessment</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Manual Entry COVID-19 Risk Assessment Result</h1>
+        <table class="result-table">
+            <tr>
+                <th>Age</th>
+                <td>{{ form_data['AGE'] }}</td>
+            </tr>
+            <tr>
+                <th>Sex</th>
+                <td>{{ 'Male' if form_data['SEX'] == '1' else 'Female' }}</td>
+            </tr>
+            <tr>
+                <th>Risk Percentage</th>
+                <td>{{ risk_percentage }}%</td>
+            </tr>
+            <tr>
+                <th>Risk Level</th>
+                <td>{{ risk }}</td>
+            </tr>
+            <tr>
+                <th>Needs ICU</th>
+                <td>{{ icu_required }}</td>
+            </tr>
+            <tr>
+                <th>Significant Factors</th>
+                <td>{{ significant_factors }}</td>
+            </tr>
+        </table>
+        <br>
+        <a href="{{ url_for('manual_entry') }}" class="button">Make Another Entry</a>
+    </div>
+</body>
+</html>

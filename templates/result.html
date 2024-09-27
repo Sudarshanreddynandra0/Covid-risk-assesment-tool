@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>COVID-19 Risk Assessment Results</title>
+</head>
+<body>
+    <div class="container">
+        <h1>COVID-19 Risk Assessment Results</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Row</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Risk Percentage</th>
+                    <th>Risk Level</th>
+                    <th>Needs ICU</th>
+                    <th>Significant Factors</th>
+                    <th>Alive Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, result in enumerate(results) %}
+                <tr>
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ result['AGE'] }}</td>
+                    <td>{{ 'Male' if result['SEX'] == 1 else 'Female' }}</td>
+                    <td>{{ result['Risk Percentage'] }}%</td>
+                    <td>{{ result['Risk'] }}</td>
+                    <td>{{ result['Needs ICU'] }}</td>
+                    <td>{{ result['Significant Factors'] }}</td>
+                    <td>{{ 'Alive' if result['ALIVE_STATUS'] == 1 else 'Deceased' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('uploaded_file', filename='result.csv') }}" class="button">Download CSV</a>
+    </div>
+</body>
+</html>
